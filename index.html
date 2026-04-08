@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sports Council IIT Kanpur</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#dcdcdc;
+}
+
+.header{
+    background:linear-gradient(to right,#b30000,#ff1a1a);
+    color:white;
+    padding:10px;
+    font-size:28px;
+    font-style:italic;
+}
+
+.container{
+    display:flex;
+}
+
+.sidebar{
+    width:220px;
+    background:white;
+    border-radius:15px;
+    margin:15px;
+    padding:10px;
+    box-shadow:0 0 8px gray;
+}
+
+.menu{
+    background:black;
+    color:white;
+    padding:10px;
+    margin:5px 0;
+    border-left:6px solid red;
+    cursor:pointer;
+}
+
+.menu:hover{
+    background:#222;
+}
+
+.content{
+    flex:1;
+    margin:15px;
+    background:black;
+    color:white;
+    border-radius:20px;
+    padding:30px;
+    box-shadow:0 0 10px gray;
+}
+
+.title{
+    font-size:32px;
+    font-style:italic;
+}
+
+.subtitle{
+    margin-top:5px;
+    color:#ccc;
+}
+
+.news{
+    margin-top:30px;
+}
+
+.footer{
+    text-align:center;
+    margin-top:40px;
+    color:white;
+}
+
+img{
+    width:300px;
+    border-radius:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+Sports Council
+</div>
+
+<div class="container">
+
+<div class="sidebar">
+
+<div class="menu">HOME</div>
+
+<div class="menu">GAMES</div>
+
+<div class="menu">CLUBS</div>
+
+<div class="menu">AWARDS & SCHOLARSHIPS</div>
+
+<div class="menu">EVENTS</div>
+
+<div class="menu">CPA</div>
+
+<div class="menu">COMMITTEE</div>
+
+<!-- New button added -->
+<div class="menu" onclick="location.href='leaderboard.html'">
+INFERNO LEADERBOARD
+</div>
+
+</div>
+
+<div class="content">
+
+<div style="display:flex; justify-content:space-between; align-items:center;">
+
+<div>
+<div class="title">Sports council</div>
+
+<div class="subtitle">IIT Kanpur</div>
+
+<div style="margin-top:10px;">Welcomes you</div>
+
+<div class="news">
+♦ Udghosh website launched
+</div>
+
+</div>
+
+<div>
+<img src="sports.jpg">
+</div>
+
+</div>
+
+<div class="footer">
+HOME | CPA | COMMITTEE | CONTACT US
+</div>
+
+</div>
+
+</div>
+
+</body>
+</html>
