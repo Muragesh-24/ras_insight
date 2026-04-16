@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SPO Opportunities | IIT Kanpur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a1118;
+      --primary-blue: #003D7C;
+      --text-gray: #718096;
+      --border-color: #e2e8f0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #ffffff;
+      color: #1a202c;
+    }
+
+    /* Navbar Styling */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5%;
+      border-bottom: 1px solid #eee;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-section img { height: 45px; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+
+    /* Hero Section */
+    .hero {
+      background-color: var(--bg-dark);
+      color: white;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      margin: 0;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #a0aec0;
+      margin-top: 15px;
+    }
+
+    /* Content Area */
+    .container {
+      max-width: 1200px;
+      margin: 60px auto;
+      padding: 0 20px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      color: var(--primary-blue);
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100%;
+      height: 1px;
+      background: #edf2f7;
+      margin-top: 15px;
+    }
+
+    /* Grid and Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 24px;
+      transition: box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .card:hover {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 20px;
+    }
+
+    .company-info h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .company-info p {
+      margin: 4px 0 0 0;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+    }
+
+    .badge {
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      background: #ebf8ff;
+      color: #2b6cb0;
+      letter-spacing: 0.5px;
+    }
+
+    .badge.placement {
+      background: #e6fffa;
+      color: #2c7a7b;
+    }
+
+    .details {
+      font-size: 0.9rem;
+      color: #4a5568;
+    }
+
+    .detail-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .icon {
+      width: 16px;
+      opacity: 0.6;
+    }
+
+    .loader {
+      text-align: center;
+      padding: 50px;
+      color: var(--text-gray);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="logo-section">
+      <div style="font-weight: 800; color: #1a202c;">Students’ Placement Office</div>
+    </div>
+    <div class="nav-links">
+      <span>ABOUT IITK ▾</span>
+      <span>FOR STUDENTS ▾</span>
+      <span>RECRUITER ▾</span>
+      <span>CONTACT ▾</span>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>SPO Opportunities</h1>
+    <p>Browse latest placement and internship opportunities</p>
+  </header>
+
+  <main class="container">
+    <h2 class="section-title">Latest Opportunities</h2>
+    <div id="loader" class="loader">Fetching data...</div>
+    <div id="grid" class="grid"></div>
+  </main>
+
+  <script>
+    const API = "https://opensheet.elk.sh/1-eM7p1UIHrrZRZoL3bnCMmI_ltsddN7ZGTM_MvtiE2s/Sheet1";
+
+    fetch(API)
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById("loader").style.display = "none";
+        const grid = document.getElementById("grid");
+
+        data.forEach(item => {
+          const isPlacement = item.type?.toLowerCase().includes('placement');
+          
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <div class="card-header">
+              <div class="company-info">
+                <h3>${item.company}</h3>
+                <p>${item.role}</p>
+              </div>
+              <span class="badge ${isPlacement ? 'placement' : ''}">${item.type || 'Intern'}</span>
+            </div>
+
+            <div class="details">
+              <div class="detail-item">
+                <span class="icon"></span> ${item.location || "Bangalore"}
+              </div>
+              <div class="detail-item">
+                <span class="icon"></span> ${item.stipend || item.ctc || "Not Disclosed"}
+              </div>
+              <div class="detail-item">
+                <span class="icon"></span> ${item.eligibility || "CS/IT Final Year"}
+              </div>
+            </div>
+          `;
+          grid.appendChild(card);
+        });
+      })
+      .catch(err => {
+        document.getElementById("loader").innerText = "Error loading opportunities.";
+      });
+  </script>
+
+</body>
+</html>
